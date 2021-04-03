@@ -9,9 +9,6 @@ phases:
   build:
     commands:
       - npm run build
-  post_build:
-    commands:
-      - export NODE_ENV="production"
 artifacts:
   type: zip
   files:
