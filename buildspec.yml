@@ -7,7 +7,7 @@ phases:
     commands:
       - npm install
       - npm install --only=dev
-  test:
+  pre_build:
     commands:
       - npm test
   build:
