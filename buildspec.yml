@@ -6,6 +6,9 @@ phases:
   install:
     commands:
       - npm install
+      - npm install --only=dev
+  test:
+      - npm test
   build:
     commands:
       - npm run build
