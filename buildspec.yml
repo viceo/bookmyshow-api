@@ -7,8 +7,6 @@ phases:
     commands:
       - echo Installing source NPM dependencies.
       - npm ci
-      - echo Testing
-      - ./node_modules/.bin/jest
   build:
     commands:
       - echo Build started on `date`
