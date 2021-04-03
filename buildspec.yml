@@ -4,6 +4,10 @@ phases:
     commands:
       - echo Installing source NPM dependencies.
       - npm install
+      - echo Configuring enviroment variables
+      - export NODE_ENV=production
+      - echo Testing
+      - npm test
   build:
     commands:
       - echo Build started on `date`
