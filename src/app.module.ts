@@ -8,6 +8,8 @@ import { ShowsModule } from './shows/shows.module';
 import { CitiesService } from './cities/cities.service';
 import { CitiesController } from './cities/cities.controller';
 import { CitiesModule } from './cities/cities.module';
+import { Show } from './_entities/show.entity';
+import { Movie } from './_entities/movie.entity';
 
 const dbModule = TypeOrmModule.forRoot({
   type: 'mariadb',
@@ -16,12 +18,16 @@ const dbModule = TypeOrmModule.forRoot({
   username: process.env.BMS_DB_USER,
   password: process.env.BMS_DB_PASSWORD,
   database: process.env.BMS_DB_DATABASE,
-  entities: [],
-  synchronize: process.env.NODE_ENV === 'production' ? false : true,
+  entities: [Show, Movie],
+  synchronize: false, //? Evitamos sincronización, el proyecto se hizo Database first.
 })
 
+const entitiesModules = TypeOrmModule.forFeature([
+  Movie, Show
+])
+
 @Module({
-  imports: [dbModule, ShowsModule, CitiesModule],
+  imports: [dbModule, entitiesModules, ShowsModule, CitiesModule],
   controllers: [AppController, ShowsController, CitiesController],
   providers: [AppService, ShowsService, CitiesService],
 })

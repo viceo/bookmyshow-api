@@ -1,11 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { getShows } from '../_repositories/shows.repository'
+import { InjectRepository } from '@nestjs/typeorm';
+import { Show } from 'src/_entities/show.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ShowsService {
+
+    constructor(
+        @InjectRepository(Show)
+        private showsRepository: Repository<Show>
+    )
+    {}
     
-    async getShows() {
-        return await getShows()
+    getShows(): Promise<Show[]> {
+        return this.showsRepository.find()
     }
 
 }
