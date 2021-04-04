@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Show } from 'src/_entities/show.entity';
+import { Show, ShowRelations } from 'src/_entities/show.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class ShowsService {
     {}
     
     getShows(): Promise<Show[]> {
-        return this.showsRepository.find()
+        return this.showsRepository.find({ relations: [ShowRelations.movie] })
     }
 
 }

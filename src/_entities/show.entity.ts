@@ -2,6 +2,11 @@
 import { Entity, Column, ManyToOne, PrimaryColumn, JoinColumn } from 'typeorm';
 import { Movie } from './movie.entity';
 
+export enum ShowRelations
+{
+    movie = 'movie'
+}
+
 @Entity("tb_shows")
 export class Show {
   @PrimaryColumn({ name: 'pk_show' })
@@ -21,5 +26,5 @@ export class Show {
 
   @ManyToOne(() => Movie, movie => movie.shows)
   @JoinColumn({ name: 'fk_movie' })
-  movie: Movie
+  [ShowRelations.movie]: Movie
 }
