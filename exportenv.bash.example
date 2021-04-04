@@ -1,0 +1,5 @@
+export BMS_DB_HOST="localhost"
+export BMS_DB_PORT="3306"
+export BMS_DB_USER="root"
+export BMS_DB_PASSWORD="root"
+export BMS_DB_DATABASE="my_db"

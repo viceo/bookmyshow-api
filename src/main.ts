@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Request, Response, NextFunction } from 'express'
+import { setConnection } from './_factories/dbConnection.factory'
 
 const SecurityMiddleware = (req: Request, res: Response, next: NextFunction) => {
   
@@ -9,6 +10,7 @@ const SecurityMiddleware = (req: Request, res: Response, next: NextFunction) => 
   if(process.env.NODE_ENV === 'production') {
     if (req.headers['x-api-key'] !== 'uMYNT2YfDJHEV9dd7R9ZkK5vnRA4wbLnKpuLprDBGF4R7m4MKVdfadzbR8un6cRvdrw4YrvzgeWHEpRvbNpfJpxYvLd7KaEsHfuJ9UWUgdnQFqLPbfSVTyn2xMhuhLDe') {
       res.status(403).end()
+      console.log('?', process.env.NODE_ENV)
       return
     }
   }
@@ -18,6 +20,7 @@ const SecurityMiddleware = (req: Request, res: Response, next: NextFunction) => 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(SecurityMiddleware);
+  setConnection()
   await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
