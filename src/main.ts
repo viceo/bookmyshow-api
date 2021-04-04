@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Request, Response, NextFunction } from 'express'
-import { setConnection } from './_factories/dbConnection.factory'
 
 const SecurityMiddleware = (req: Request, res: Response, next: NextFunction) => {
   
@@ -20,7 +19,6 @@ const SecurityMiddleware = (req: Request, res: Response, next: NextFunction) => 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(SecurityMiddleware);
-  setConnection()
   await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
