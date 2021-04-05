@@ -9,11 +9,11 @@ export class ShowsService {
     constructor(
         @InjectRepository(Show)
         private showsRepository: Repository<Show>
-    )
-    {}
+    ) { }
     
-    getShows(): Promise<Show[]> {
-        return this.showsRepository.find({ relations: [ShowRelations.movie] })
+    //? Se filtran por default los shows de Monterrey.
+    getShows(city = 'Monterrey'): Promise<Show[]> {
+        return this.showsRepository.find({ relations: [ShowRelations.movie], where: [{ city }] })
     }
 
 }
