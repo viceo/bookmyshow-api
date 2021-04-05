@@ -7,6 +7,8 @@ export class CitiesController {
 
     @Get()
     async getCities() {
-        return await this.citiesService.getCities()
+        const metadata = {} //? Se puede enviar metadata además de retornar el recurso desde el controlador (ejemplo)
+        const cities = await this.citiesService.getCities()
+        return { metadata, cities }
     }
 }
