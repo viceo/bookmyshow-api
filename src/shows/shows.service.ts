@@ -10,10 +10,15 @@ export class ShowsService {
         @InjectRepository(Show)
         private showsRepository: Repository<Show>
     ) { }
-    
+
     //? Se filtran por default los shows de Monterrey.
     getShows(city = 'Monterrey'): Promise<Show[]> {
         return this.showsRepository.find({ relations: [ShowRelations.movie], where: [{ city }] })
+    }
+
+    //? Se filtra por id
+    getShowById(id) {
+        return this.showsRepository.findOne({ relations: [ShowRelations.movie], where: [{ id }] })
     }
 
 }
