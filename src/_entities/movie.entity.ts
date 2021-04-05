@@ -18,6 +18,9 @@ export class Movie {
     @Column()
     format: string
 
+    @Column()
+    description: string
+
     @OneToMany(() => Show, show => show.movie)
     shows: Show[]
 }
